@@ -1,0 +1,49 @@
+" vim-plug plugins
+call plug#begin('~/.vim/bundle')
+
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'valloric/youcompleteme', { 'do': './install.py --js-completer' }
+
+call plug#end()
+
+" enable syntax/colors
+syntax enable
+set background=dark
+colorscheme solarized
+set encoding=utf-8
+
+" set mapleader as space
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard
+nnoremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Quit without saving
+nnoremap <leader>Q :q!<cr>
+" Quit 
+nnoremap <leader>q :q<cr>
+" Save File
+nnoremap <leader>w :w<cr>
+
+" jj as escape in insert mode
+inoremap jj <Esc>
+
+" set relative number for normal, absolute everywhere else
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" YouCompleteMe - close preview window after choosing completion string
+let g:ycm_autoclose_preview_window_after_completion = 1

@@ -1,0 +1,8 @@
+alias ls="ls -GF"
+alias l="ls -la"
+alias v="vim"
+alias t="tmux"
+
+function mk() {
+   mkdir $1 && cd $1
+} 
