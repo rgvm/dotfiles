@@ -1,5 +1,3 @@
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" 
-
 ln -fs $SCRIPT_DIR/bash/bash_profile ~/.bash_profile
 ln -fs $SCRIPT_DIR/bash/bashrc ~/.bashrc
 

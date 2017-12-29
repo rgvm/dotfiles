@@ -1,7 +1,12 @@
 #!/bin/bash
 
+export SCRIPT_DIR
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 echo "Installing iTerm2..."
 brew cask install iterm2
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$SCRIPT_DIR/iterm"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 echo "Installing vim..."
 brew install macvim --with-override-system-vim
@@ -31,4 +36,5 @@ echo "Setting up symlinks..."
 source ./symlinks.sh
 
 echo "Installing vim plugins..."
+brew install cmake # necessary for YouCompleteMe
 vim +PlugInstall +qall
