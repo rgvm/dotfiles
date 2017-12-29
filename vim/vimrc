@@ -16,6 +16,11 @@ set background=dark
 colorscheme solarized
 set encoding=utf-8
 
+" indentation
+filetype plugin indent on
+set expandtab tabstop=4 shiftwidth=4
+autocmd filetype html setlocal expandtab tabstop=2 shiftwidth=2
+
 " set mapleader as space
 nnoremap <SPACE> <Nop>
 let mapleader=" "
@@ -29,7 +34,7 @@ nnoremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
 " Quit without saving
 nnoremap <leader>Q :q!<cr>
-" Quit 
+" Quit
 nnoremap <leader>q :q<cr>
 " Save File
 nnoremap <leader>w :w<cr>
