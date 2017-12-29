@@ -13,6 +13,7 @@ brew install macvim --with-override-system-vim
 
 echo "Installing tmux..."
 brew install tmux
+brew install reattach-to-user-namespace
 
 echo "Installing pyenv..."
 brew install pyenv

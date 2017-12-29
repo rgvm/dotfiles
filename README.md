@@ -2,7 +2,7 @@
 My dotfiles for an OSX dev environment. I know yours are probably better don't judge me pls.
 ## Fresh Install
 ### Xcode
-Get the Xcode command line tools:
+Install Xcode from the App Store and get the Xcode command line tools with:
 
 ```bash
 xcode-select --install
@@ -22,4 +22,4 @@ brew install git
 git clone https://github.com/rgvm/dotfiles.git
 cd dotfiles
 ./install.sh
-
+```
