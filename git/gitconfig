@@ -1,10 +1,20 @@
 [user]
-	name = Raghav Mandayam
-	email = raghavmandayam@gmail.com
+    name = Raghav Mandayam
+    email = raghavmandayam@gmail.com
 [core]
-	autocrlf = input
-	excludesfile = ~/.gitignore_global
+    autocrlf = input
+    excludesfile = ~/.gitignore_global
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+    clean = git-lfs clean %f
+    smudge = git-lfs smudge %f
+    required = true
+[alias]
+    cp = cherry-pick
+    st = status -s
+    cl = clone
+    ci = commit
+    cm = commit -m
+    co = checkout
+    br = branch
+    diff = diff --word-diff
+    dc = diff --cached
