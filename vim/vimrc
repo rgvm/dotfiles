@@ -42,6 +42,12 @@ nnoremap <leader>w :w<cr>
 " jj as escape in insert mode
 inoremap jj <Esc>
 
+" auto append closing brackets
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
 " set relative number for normal, absolute everywhere else
 set number relativenumber
 augroup numbertoggle
