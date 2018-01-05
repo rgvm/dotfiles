@@ -61,3 +61,6 @@ augroup END
 
 " YouCompleteMe - close preview window after choosing completion string
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+" vim-airline powerline font setting
+let g:airline_powerline_fonts = 1
