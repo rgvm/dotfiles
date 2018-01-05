@@ -30,3 +30,9 @@ bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
 
 eval "$(pyenv init -)"
+
+# proprietary escape codes to change iTerm title bar color
+# no longer works with High Sierra!
+printf "\033]6;1;bg;red;brightness;0\a";
+printf "\033]6;1;bg;green;brightness;40\a";
+printf "\033]6;1;bg;blue;brightness;51\a"
