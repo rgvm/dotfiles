@@ -1,4 +1,4 @@
-" vim-plug plugins
+" plugins
 call plug#begin('~/.vim/bundle')
 
 Plug 'altercation/vim-colors-solarized'
@@ -13,7 +13,7 @@ Plug 'valloric/youcompleteme', { 'do': './install.py' }
 
 call plug#end()
 
-" enable syntax/colors
+" syntax/colors
 syntax enable
 set background=dark
 colorscheme solarized
@@ -24,23 +24,41 @@ filetype plugin indent on
 set expandtab tabstop=4 shiftwidth=4
 autocmd filetype html setlocal expandtab tabstop=2 shiftwidth=2
 
+" split settings
+set splitbelow
+set splitright
+
+" hybrid line numbering
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
+augroup END
+set number relativenumber
+
 " set mapleader as space
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" Yank text to the OS X clipboard
+" yank text to the OSX clipboard
 noremap <leader>y "*y
 noremap <leader>yy "*Y
 
-" Preserve indentation while pasting text from the OS X clipboard
+" preserve indentation while pasting text from the OSX clipboard
 nnoremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
 
-" Quit without saving
+" quit without saving
 nnoremap <leader>Q :q!<cr>
-" Quit
+" quit
 nnoremap <leader>q :q<cr>
-" Save File
+" save file
 nnoremap <leader>w :w<cr>
+
+" easier split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " jj as escape in insert mode
 inoremap jj <Esc>
@@ -51,16 +69,8 @@ inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
 
-" hybrid line numbering
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-augroup END
-set number relativenumber
-
 " YouCompleteMe - close preview window after choosing completion string
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-" vim-airline powerline font setting
+" vim-airline - powerline font setting
 let g:airline_powerline_fonts = 1
