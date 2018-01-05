@@ -51,13 +51,13 @@ inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
 
-" set relative number for normal, absolute everywhere else
-set number relativenumber
+" hybrid line numbering
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 augroup END
+set number relativenumber
 
 " YouCompleteMe - close preview window after choosing completion string
 let g:ycm_autoclose_preview_window_after_completion = 1
