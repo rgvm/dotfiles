@@ -1,22 +1,18 @@
 " plugins
 call plug#begin('~/.vim/bundle')
 
-Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'valloric/youcompleteme', { 'do': './install.py' }
 
 call plug#end()
 
-" syntax/colors
+" syntax
 syntax enable
-set background=dark
-colorscheme solarized
 set encoding=utf-8
 
 " indentation
@@ -35,6 +31,90 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 augroup END
 set number relativenumber
+
+" custom statusline
+set statusline=%!Status()
+set laststatus=2
+
+function! Status() abort
+
+    function! LHS()
+        let line_col = ''
+        let line_num = line('$')
+        let width = max([strlen(line_num), (&numberwidth - 1)]) + &l:foldcolumn
+        let padding = width - strlen(line_num)
+        if padding <= 0
+            let line_col .= line_num
+        else
+            let line_col .= repeat(' ', padding + 1) . line_num
+        endif
+        return line_col . ' '
+    endfunction
+
+    function! ReadOnly()
+        if &readonly || !&modifiable
+            return ' ' . '[]'
+        else
+            return ''
+    endfunction
+
+    function! FileEnc()
+        if &fenc != 'utf-8'
+            return ' ' . &fenc
+        else
+            return ''
+    endfunction
+
+    function! RHS()
+        let curr_col = virtcol('.')
+        let num_cols = virtcol('$')
+        let padding = max([0, 5 - strlen(curr_col) - strlen(num_cols)])
+        let rhs = repeat(' ', padding + 1)
+        let rhs .= 'Ͼ:'
+        let rhs .= curr_col
+        let rhs .= '/'
+        let rhs .= num_cols
+        return rhs
+    endfunction
+
+    let stat = ''
+
+    let stat .= '%1*'
+    let stat .= '%{LHS()}'
+    let stat .= '%*'
+
+    if exists('*fugitive#head') && fugitive#head() != ''
+        let stat .= '%2*'
+        let stat .= '  '
+        let stat .= fugitive#head()
+        let stat .= '%3*'
+        let stat .= ''
+        let stat .= '%*'
+    endif
+
+    let stat .= '%<'
+    let stat .= '%4*'
+    let stat .= ' '
+    let stat .= '%F'
+    let stat .= '%{ReadOnly()}'
+    let stat .= '%='
+    let stat .= '%y'
+    let stat .= '%{FileEnc()}'
+    let stat .= ' '
+    let stat .= '%*'
+    let stat .= '%3*'
+    let stat .= ''
+    let stat .= '%2*'
+    let stat .= '%{RHS()}'
+    let stat .= '%*'
+
+    return stat
+endfunction
+
+highlight User1 ctermfg=11, ctermbg=18
+highlight User2 ctermfg=15, ctermbg=12
+highlight User3 ctermfg=12, ctermbg=18
+highlight User4 ctermfg=7, ctermbg=18
 
 " set mapleader as space
 nnoremap <SPACE> <Nop>
@@ -61,7 +141,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " buffer navigation
-nnoremap <leader>b :ls<CR>:b<Space>
+set hidden
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>
+nmap <leader>bq :bp <BAR> bd #<CR>
 
 " jj as escape in insert mode
 inoremap jj <Esc>
@@ -74,9 +157,6 @@ inoremap {}     {}
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
-
-" vim-airline
-let g:airline_powerline_fonts = 1
 
 " NERDTree
 nnoremap <Leader>n :NERDTreeToggle<CR>

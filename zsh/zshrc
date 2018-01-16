@@ -15,13 +15,11 @@ source $ZSH/oh-my-zsh.sh
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-source ~/.zsh_aliases
-
 export DEFAULT_USER=raghav
 
 export EDITOR="vim"
 
-bindkey -v 
+bindkey -v
 
 # vi style incremental search
 bindkey '^R' history-incremental-search-backward
@@ -36,3 +34,9 @@ eval "$(pyenv init -)"
 printf "\033]6;1;bg;red;brightness;0\a";
 printf "\033]6;1;bg;green;brightness;40\a";
 printf "\033]6;1;bg;blue;brightness;51\a"
+
+# base16-shell
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+source ~/.zsh_aliases
