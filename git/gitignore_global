@@ -59,3 +59,6 @@ desktop.ini
 .idea
 .iml
 *.sublime-workspace
+
+# Pyenv #
+.python-version
