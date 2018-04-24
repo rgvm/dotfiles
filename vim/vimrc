@@ -2,12 +2,14 @@
 call plug#begin('~/.vim/bundle')
 
 Plug 'chriskempson/base16-vim'
+Plug 'lervag/vimtex'
+Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme', { 'do': './install.py' }
+Plug 'w0rp/ale'
 
 call plug#end()
 
