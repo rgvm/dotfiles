@@ -1,3 +1,4 @@
+brew 'zsh'
 cask 'iterm2'
 brew 'macvim', args: ['with-override-system-vim']
 brew 'tmux'
