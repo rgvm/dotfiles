@@ -13,6 +13,10 @@ Plug 'w0rp/ale'
 
 call plug#end()
 
+" color
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-gruvbox-dark-medium
+
 " syntax
 syntax enable
 set encoding=utf-8
