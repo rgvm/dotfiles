@@ -18,3 +18,5 @@
     br = branch
     diff = diff --word-diff
     dc = diff --cached
+[diff]
+	tool = vimdiff
