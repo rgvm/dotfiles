@@ -5,4 +5,5 @@ brew 'tmux'
 brew 'reattach-to-user-namespace'
 brew 'pyenv'
 brew 'node'
-brew 'cmake' # necessary for YouCompleteMe
+brew 'cmake'
+brew 'the_silver_searcher'
