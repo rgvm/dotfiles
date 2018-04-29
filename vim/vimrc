@@ -155,12 +155,6 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " jj as escape in insert mode
 inoremap jj <Esc>
 
-" auto append closing brackets
-inoremap {      {}<Left>
-inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
-
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
 
