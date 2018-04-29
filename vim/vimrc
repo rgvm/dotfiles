@@ -3,6 +3,7 @@ call plug#begin('~/.vim/bundle')
 
 Plug 'chriskempson/base16-vim'
 Plug 'lervag/vimtex'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
@@ -165,3 +166,13 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
+
+" CtrlP
+let g:ctrlp_map = '\'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_mruf_relative = 1
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
