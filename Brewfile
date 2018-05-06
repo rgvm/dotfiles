@@ -1,4 +1,5 @@
 brew 'cmake'
+brew 'ctags'
 brew 'macvim', args: ['with-override-system-vim']
 brew 'node'
 brew 'pyenv'

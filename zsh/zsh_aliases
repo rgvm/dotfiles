@@ -5,6 +5,7 @@ alias t="tmux"
 alias c="clear"
 alias e="exit"
 alias g="git"
+alias ctags="`brew --prefix`/bin/ctags"
 
 function mk() {
     mkdir $1 && cd $1
