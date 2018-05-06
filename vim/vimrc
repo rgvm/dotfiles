@@ -40,6 +40,9 @@ augroup numbertoggle
 augroup END
 set number relativenumber
 
+" enable mouse support
+set mouse=a
+
 " custom statusline
 set statusline=%!Status()
 set laststatus=2
