@@ -13,6 +13,7 @@
     st = status -s
     cl = clone
     ci = commit
+    cam = commit -am
     cm = commit -m
     co = checkout
     br = branch
