@@ -27,6 +27,7 @@ set encoding=utf-8
 filetype plugin indent on
 set expandtab tabstop=4 shiftwidth=4
 autocmd filetype html setlocal expandtab tabstop=2 shiftwidth=2
+autocmd filetype c,cpp,cc setlocal expandtab tabstop=2 shiftwidth=2
 
 " split settings
 set splitbelow
