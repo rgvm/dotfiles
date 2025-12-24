@@ -123,6 +123,7 @@ function! Status() abort
     let stat .= '%4*'
     let stat .= ' '
     let stat .= '%F'
+    let stat .= ' %m'
     let stat .= '%{ReadOnly()}'
     let stat .= '%='
     let stat .= '%y'
