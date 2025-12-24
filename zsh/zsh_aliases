@@ -1,10 +1,11 @@
 alias ls="ls -GF"
 alias l="ls -la"
-alias v="vim"
 alias t="tmux"
 alias c="clear"
 alias e="exit"
 alias g="git"
+alias vim="nvim"
+alias v="nvim"
 alias ctags="`brew --prefix`/bin/ctags"
 
 function mk() {
