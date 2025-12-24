@@ -34,3 +34,5 @@ source ./symlinks.sh
 
 echo "Installing vim plugins..."
 nvim +PlugInstall +qall
+# Install lang-specific extensions.
+nvim -c ":CocInstall coc-clangd"

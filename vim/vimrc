@@ -1,5 +1,5 @@
 " plugins
-call plug#begin('~/.vim/bundle')
+call plug#begin()
 
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
@@ -7,6 +7,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'lervag/vimtex'
 Plug 'mattn/emmet-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
@@ -27,7 +28,7 @@ set encoding=utf-8
 filetype plugin indent on
 set expandtab tabstop=4 shiftwidth=4
 autocmd filetype html setlocal expandtab tabstop=2 shiftwidth=2
-autocmd filetype c,cpp,cc setlocal expandtab tabstop=2 shiftwidth=2
+autocmd filetype c,cpp,cc setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent smartindent
 
 " split settings
 set splitbelow
@@ -46,6 +47,21 @@ set mouse=a
 
 " updatetime (for git gutter)
 set updatetime=100
+
+" coc.nvim keybinds
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" use <tab> to trigger completion or open autocomplete
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#confirm() :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+" Ctrl-J and Ctrl-K to navigate autocomplete list.
+inoremap <expr> <C-J> coc#pum#visible() ? coc#pum#next(1) : "\<C-J>"
+inoremap <expr> <C-K> coc#pum#visible() ? coc#pum#prev(1) : "\<C-K>"
 
 " custom statusline
 set statusline=%!Status()

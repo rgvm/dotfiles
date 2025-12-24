@@ -1,0 +1,4 @@
+{
+    "https.rejectUnauthorized": false,
+    "http.proxyStrictSSL": false
+}
