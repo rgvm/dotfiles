@@ -145,6 +145,8 @@ nnoremap <leader>Q :q!<cr>
 nnoremap <leader>q :q<cr>
 " save file
 nnoremap <leader>w :w<cr>
+" save and quit
+nnoremap <leader>W :wq<cr>
 
 " split navigation
 nnoremap <C-J> <C-W><C-J>
