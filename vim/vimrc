@@ -44,6 +44,9 @@ set number relativenumber
 " enable mouse support
 set mouse=a
 
+" updatetime (for git gutter)
+set updatetime=100
+
 " custom statusline
 set statusline=%!Status()
 set laststatus=2
