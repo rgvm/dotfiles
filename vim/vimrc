@@ -4,15 +4,11 @@ call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'lervag/vimtex'
-Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pangloss/vim-javascript'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -175,19 +171,16 @@ nnoremap <C-H> <C-W><C-H>
 
 " buffer navigation
 set hidden
-nmap <leader>l :bnext<CR>
-nmap <leader>h :bprevious<CR>
-nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>j :bnext<CR>
+nmap <leader>k :bprevious<CR>
+nmap <leader>d :bp <BAR> bd #<CR>
 
 " jj as escape in insert mode
 inoremap jj <Esc>
 
-" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion = 1
-
 " NERDTree
-nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>f :NERDTreeFind<CR>
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeMinimalUI = 1
