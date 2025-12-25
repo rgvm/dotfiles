@@ -7,7 +7,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': 'v0.2.0' }
-Plug 'preservim/nerdtree'
+Plug 'stevearc/oil.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 
@@ -182,13 +182,10 @@ nmap \ :Telescope find_files<CR>
 nmap <leader>b :Telescope buffers<CR>
 nmap <leader>/ :Telescope live_grep<CR>
 
+" Oil setup
+lua <<EOF 
+    require("oil").setup()
+EOF
+
 " jj as escape in insert mode
 inoremap jj <Esc>
-
-" NERDTree
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeDirArrows = 1
