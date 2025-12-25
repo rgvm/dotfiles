@@ -1,14 +1,14 @@
 " plugins
 call plug#begin()
 
-Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dense-analysis/ale'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -41,7 +41,7 @@ set number relativenumber
 " enable mouse support
 set mouse=a
 
-" updatetime (for git gutter)
+" updatetime (for gitsigns)
 set updatetime=100
 
 " coc.nvim keybinds
