@@ -2,10 +2,11 @@
 call plug#begin()
 
 Plug 'chriskempson/base16-vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'dense-analysis/ale'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': 'v0.2.0' }
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -176,6 +177,11 @@ nmap <leader>j :bnext<CR>
 nmap <leader>k :bprevious<CR>
 nmap <leader>d :bp <BAR> bd #<CR>
 
+" Telescope bindings
+nmap \ :Telescope find_files<CR>
+nmap <leader>b :Telescope buffers<CR>
+nmap <leader>/ :Telescope live_grep<CR>
+
 " jj as escape in insert mode
 inoremap jj <Esc>
 
@@ -186,13 +192,3 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeDirArrows = 1
-
-" CtrlP
-let g:ctrlp_map = '\'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_mruf_relative = 1
-
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
