@@ -8,184 +8,127 @@ vim.pack.add({
     { src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.2.0' },
     { src = 'https://github.com/stevearc/oil.nvim' },
     { src = 'https://github.com/tpope/vim-fugitive' },
+    { src = 'https://github.com/tpope/vim-surround' },
 })
 
 require("oil").setup()
 
+-- color
+vim.g.base16colorspace=256  -- Access colors present in 256 colorspace
+vim.cmd('colorscheme base16-gruvbox-dark-medium')
+
+-- indentation
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "javascript", "typescript", "html", "c", "cpp", "cc" },
+    callback = function()
+        vim.opt_local.autoindent = true
+        vim.opt_local.expandtab = true
+        vim.opt_local.smartindent = true
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.tabstop = 2
+    end,
+})
+
+-- split settings
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- hybrid line numbering
+vim.opt.number = true
+vim.opt.relativenumber = true
+local numbertoggle = vim.api.nvim_create_augroup('numbertoggle', {}) 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
+    group = numbertoggle,
+    callback = function()
+        vim.opt.relativenumber = true
+    end,
+})
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' },  {
+    group = numbertoggle,
+    callback = function()
+        vim.opt.relativenumber = false
+    end,
+})
+
+-- set mapleader as space
+vim.keymap.set('n', '<Space>', '<Nop>')
+vim.g.mapleader = ' '
+
+-- jj as escape in insert mode
+vim.keymap.set('i', 'jj', '<Esc>')
+
+-- yank text to the OSX clipboard
+vim.keymap.set({'n', 'v', 'o'}, '<leader>y', '"*y')
+vim.keymap.set({'n', 'v', 'o'}, '<leader>Y', '"*Y')
+
+-- split navigation
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
+
+-- telescope bindings
+vim.keymap.set('n', '\\', '<Cmd>Telescope find_files<CR>')
+vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
+vim.keymap.set('n', '<leader>/', '<Cmd>Telescope live_grep<CR>')
+
+-- add j/k navigations to jumplist
+vim.keymap.set('n', 'j', function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. 'j' or 'j'
+end, { expr = true })
+vim.keymap.set('n', 'k', function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. 'k' or 'k'
+end, { expr = true })
+
+-- disable mouse
+vim.opt.mouse = ""
+
+-- custom statusline
+function Statusline()
+    return '%< %F %m' .. ReadOnly() .. '%=%y ' .. RHS()
+end
+
+function ReadOnly()
+    if vim.bo.readonly or not vim.bo.modifiable then
+        return ' ' .. '[]'
+    else
+        return ''
+    end
+end
+
+function RHS()
+    local curr_col = vim.fn.virtcol('.')
+    local num_cols = vim.fn.virtcol('$')
+    local padding = math.max(0, 5 - #tostring(curr_col) - #tostring(num_cols))
+    local rhs = string.rep(' ', padding + 1)
+    local rhs = rhs .. 'Ͼ:'
+    local rhs = rhs .. curr_col
+    local rhs = rhs .. '/'
+    local rhs = rhs .. num_cols
+    return rhs
+end
+
+vim.opt.statusline = "%{%v:lua.Statusline()%}"
+vim.opt.laststatus = 2
+
 vim.cmd([[
-    " color
-    let base16colorspace=256  " Access colors present in 256 colorspace
-    colorscheme base16-gruvbox-dark-medium
-    
-    " syntax
-    syntax enable
-    set encoding=utf-8
-    
-    " indentation
-    filetype plugin indent on
-    set expandtab tabstop=4 shiftwidth=4
-    autocmd filetype html setlocal expandtab tabstop=2 shiftwidth=2
-    autocmd filetype c,cpp,cc setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2 autoindent smartindent
-    
-    " split settings
-    set splitbelow
-    set splitright
-    
-    " hybrid line numbering
-    augroup numbertoggle
-      autocmd!
-      autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-      autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-    augroup END
-    set number relativenumber
-    
-    " add j/k navigations to jumplist
-    nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
-    nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
-    
-    " enable mouse support
-    set mouse=a
-    
-    " updatetime (for gitsigns)
-    set updatetime=100
-    
-    " coc.nvim keybinds
-    function! CheckBackspace() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
-    
-    " use <tab> to trigger completion or open autocomplete
-    inoremap <silent><expr> <Tab>
-          \ coc#pum#visible() ? coc#pum#confirm() :
-          \ CheckBackspace() ? "\<Tab>" :
-          \ coc#refresh()
-    " Ctrl-J and Ctrl-K to navigate autocomplete list.
-    inoremap <expr> <C-J> coc#pum#visible() ? coc#pum#next(1) : "\<C-J>"
-    inoremap <expr> <C-K> coc#pum#visible() ? coc#pum#prev(1) : "\<C-K>"
-    
-    " custom statusline
-    set statusline=%!Status()
-    set laststatus=2
-    
-    function! Status() abort
-    
-        function! LHS()
-            let line_col = ''
-            let line_num = line('$')
-            let width = max([strlen(line_num), (&numberwidth - 1)]) + &l:foldcolumn
-            let padding = width - strlen(line_num)
-            if padding <= 0
-                let line_col .= line_num
-            else
-                let line_col .= repeat(' ', padding + 1) . line_num
-            endif
-            return line_col . ' '
-        endfunction
-    
-        function! ReadOnly()
-            if &readonly || !&modifiable
-                return ' ' . '[]'
-            else
-                return ''
-        endfunction
-    
-        function! FileEnc()
-            if &fenc != 'utf-8'
-                return ' ' . &fenc
-            else
-                return ''
-        endfunction
-    
-        function! RHS()
-            let curr_col = virtcol('.')
-            let num_cols = virtcol('$')
-            let padding = max([0, 5 - strlen(curr_col) - strlen(num_cols)])
-            let rhs = repeat(' ', padding + 1)
-            let rhs .= 'Ͼ:'
-            let rhs .= curr_col
-            let rhs .= '/'
-            let rhs .= num_cols
-            return rhs
-        endfunction
-    
-        let stat = ''
-    
-        let stat .= '%1*'
-        let stat .= '%{LHS()}'
-        let stat .= '%*'
-    
-        if exists('*fugitive#head') && fugitive#head() != ''
-            let stat .= '%2*'
-            let stat .= '  '
-            let stat .= fugitive#head()
-            let stat .= '%3*'
-            let stat .= ''
-            let stat .= '%*'
-        endif
-    
-        let stat .= '%<'
-        let stat .= '%4*'
-        let stat .= ' '
-        let stat .= '%F'
-        let stat .= ' %m'
-        let stat .= '%{ReadOnly()}'
-        let stat .= '%='
-        let stat .= '%y'
-        let stat .= '%{FileEnc()}'
-        let stat .= ' '
-        let stat .= '%*'
-        let stat .= '%3*'
-        let stat .= ''
-        let stat .= '%2*'
-        let stat .= '%{RHS()}'
-        let stat .= '%*'
-    
-        return stat
-    endfunction
-    
-    highlight User1 ctermfg=11, ctermbg=18
-    highlight User2 ctermfg=15, ctermbg=12
-    highlight User3 ctermfg=12, ctermbg=18
-    highlight User4 ctermfg=7, ctermbg=18
-    
-    " set mapleader as space
-    nnoremap <SPACE> <Nop>
-    let mapleader=" "
-    
-    " yank text to the OSX clipboard
-    noremap <leader>y "*y
-    noremap <leader>yy "*Y
-    
-    " preserve indentation while pasting text from the OSX clipboard
-    nnoremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
-    
-    " quit without saving
-    nnoremap <leader>Q :q!<cr>
-    " quit
-    nnoremap <leader>q :q<cr>
-    " save file
-    nnoremap <leader>w :w<cr>
-    " save and quit
-    nnoremap <leader>W :wq<cr>
-    
-    " split navigation
-    nnoremap <C-J> <C-W><C-J>
-    nnoremap <C-K> <C-W><C-K>
-    nnoremap <C-L> <C-W><C-L>
-    nnoremap <C-H> <C-W><C-H>
-    
-    " buffer navigation
-    set hidden
-    nmap <leader>j :bnext<CR>
-    nmap <leader>k :bprevious<CR>
-    nmap <leader>d :bp <BAR> bd #<CR>
-    
-    " Telescope bindings
-    nmap \ :Telescope find_files<CR>
-    nmap <leader>b :Telescope buffers<CR>
-    nmap <leader>/ :Telescope live_grep<CR>
-    
-    " jj as escape in insert mode
-    inoremap jj <Esc>
+" coc.nvim keybinds
+function! CheckBackspace() abort
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" use <tab> to trigger completion or open autocomplete
+inoremap <silent><expr> <Tab>
+\ coc#pum#visible() ? coc#pum#confirm() :
+\ CheckBackspace() ? "\<Tab>" :
+\ coc#refresh()
+" Ctrl-J and Ctrl-K to navigate autocomplete list.
+inoremap <expr> <C-J> coc#pum#visible() ? coc#pum#next(1) : "\<C-J>"
+inoremap <expr> <C-K> coc#pum#visible() ? coc#pum#prev(1) : "\<C-K>"
 ]])
