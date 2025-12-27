@@ -39,6 +39,10 @@ augroup numbertoggle
 augroup END
 set number relativenumber
 
+" add j/k navigations to jumplist
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
 " enable mouse support
 set mouse=a
 
