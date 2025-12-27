@@ -9,16 +9,5 @@
     clean = git-lfs clean %f
     smudge = git-lfs smudge %f
     required = true
-[alias]
-    cp = cherry-pick
-    st = status -s
-    cl = clone
-    ci = commit
-    cam = commit -am
-    cm = commit -m
-    co = checkout
-    br = branch
-    diff = diff --word-diff
-    dc = diff --cached
 [diff]
-	tool = vimdiff
+	tool = nvimdiff
