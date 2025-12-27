@@ -1,7 +1,10 @@
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export DEFAULT_USER=raghav
-export EDITOR="vim"
+export EDITOR="nvim"
+
+# Aliases
+alias vim="nvim"
 
 # zsh completions
 autoload -Uz compinit
