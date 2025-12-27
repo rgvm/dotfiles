@@ -1,7 +1,7 @@
 brew 'cmake'
 brew 'ctags'
 brew 'macvim', args: ['with-override-system-vim']
-brew 'neovim'
+brew 'neovim', args: ['HEAD']
 brew 'node'
 brew 'pyenv'
 brew 'reattach-to-user-namespace'

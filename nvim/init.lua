@@ -1,19 +1,18 @@
+-- plugins
+vim.pack.add({
+    { src = 'https://github.com/chriskempson/base16-vim' },
+    { src = 'https://github.com/dense-analysis/ale' },
+    { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+    { src = 'https://github.com/neoclide/coc.nvim', version = 'release' },
+    { src = 'https://github.com/nvim-lua/plenary.nvim' },
+    { src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.2.0' },
+    { src = 'https://github.com/stevearc/oil.nvim' },
+    { src = 'https://github.com/tpope/vim-fugitive' },
+})
+
+require("oil").setup()
+
 vim.cmd([[
-    " plugins
-    call plug#begin()
-    
-    Plug 'chriskempson/base16-vim'
-    Plug 'dense-analysis/ale'
-    Plug 'lewis6991/gitsigns.nvim'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': 'v0.2.0' }
-    Plug 'stevearc/oil.nvim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-surround'
-    
-    call plug#end()
-    
     " color
     let base16colorspace=256  " Access colors present in 256 colorspace
     colorscheme base16-gruvbox-dark-medium
@@ -190,5 +189,3 @@ vim.cmd([[
     " jj as escape in insert mode
     inoremap jj <Esc>
 ]])
-
-require("oil").setup()

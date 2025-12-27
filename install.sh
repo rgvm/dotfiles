@@ -25,14 +25,9 @@ git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shel
 
 echo "Configuring Neovim..."
 mkdir -p ~/.config/nvim
-# install vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo "Setting up symlinks..."
 source ./symlinks.sh
 
-echo "Installing vim plugins..."
-nvim +PlugInstall +qall
 # Install lang-specific extensions.
 nvim -c ":CocInstall coc-clangd"
