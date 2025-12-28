@@ -7,11 +7,14 @@ vim.pack.add({
     { src = 'https://github.com/neoclide/coc.nvim', version = 'release' },
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
     { src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.2.0' },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
     { src = 'https://github.com/stevearc/oil.nvim' },
     { src = 'https://github.com/tpope/vim-fugitive' },
     { src = 'https://github.com/tpope/vim-surround' },
 })
 
+require("nvim-treesitter").install { "c", "cpp", "lua" }
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 require("oil").setup()
 
 -- basic settings

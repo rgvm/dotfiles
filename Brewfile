@@ -7,6 +7,7 @@ brew 'pyenv'
 brew 'reattach-to-user-namespace'
 brew 'ripgrep'
 brew 'tmux'
+brew 'tree-sitter-cli'
 brew 'yarn'
 brew 'zsh'
 
