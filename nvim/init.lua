@@ -72,6 +72,16 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
 
+-- visual mode line moving
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- centered vertical navigation
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
 -- telescope bindings
 vim.keymap.set('n', '\\', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
