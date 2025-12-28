@@ -1,6 +1,7 @@
 -- plugins
 vim.pack.add({
     { src = 'https://github.com/chriskempson/base16-vim' },
+    { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
     { src = 'https://github.com/lewis6991/gitsigns.nvim' },
     { src = 'https://github.com/mbbill/undotree' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -40,14 +41,21 @@ vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 require("oil").setup()
 
 -- basic settings
+vim.opt.backup = false
 vim.opt.cursorline = true
+vim.opt.hlsearch = false
 vim.opt.scrolloff = 8
-vim.opt.wrap = false
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.updatetime = 50
 vim.opt.winborder = "rounded"
+vim.opt.wrap = false
 
 -- color
-vim.g.base16colorspace = 256 -- Access colors present in 256 colorspace
-vim.cmd('colorscheme base16-gruvbox-dark-medium')
+vim.opt.background = "dark"
+vim.opt.termguicolors = true
+vim.cmd('colorscheme gruvbox')
+vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" }) -- gitsigns column
 
 -- indentation
 vim.opt.autoindent = true
