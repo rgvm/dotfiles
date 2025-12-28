@@ -3,6 +3,7 @@ vim.pack.add({
     { src = 'https://github.com/chriskempson/base16-vim' },
     { src = 'https://github.com/dense-analysis/ale' },
     { src = 'https://github.com/lewis6991/gitsigns.nvim' },
+    { src = 'https://github.com/mbbill/undotree' },
     { src = 'https://github.com/neoclide/coc.nvim', version = 'release' },
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
     { src = 'https://github.com/nvim-telescope/telescope.nvim', version = 'v0.2.0' },
@@ -86,6 +87,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set('n', '\\', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>/', '<Cmd>Telescope live_grep<CR>')
+
+-- undo tree bindings
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
 -- add j/k navigations to jumplist
 vim.keymap.set('n', 'j', function()
