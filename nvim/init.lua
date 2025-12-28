@@ -1,6 +1,5 @@
 -- plugins
 vim.pack.add({
-    { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
     { src = 'https://github.com/lewis6991/gitsigns.nvim' },
     { src = 'https://github.com/mbbill/undotree' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -8,6 +7,7 @@ vim.pack.add({
     { src = 'https://github.com/nvim-telescope/telescope.nvim',  version = 'v0.2.0' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
+    { src = 'https://github.com/sainnhe/gruvbox-material' },
     { src = 'https://github.com/stevearc/oil.nvim' },
     { src = 'https://github.com/tpope/vim-fugitive' },
     { src = 'https://github.com/tpope/vim-surround' },
@@ -52,9 +52,11 @@ vim.opt.winborder = "rounded"
 vim.opt.wrap = false
 
 -- color
-vim.opt.background = "dark"
 vim.opt.termguicolors = true
-vim.cmd('colorscheme gruvbox')
+vim.opt.background = 'dark'
+vim.g.gruvbox_material_background = 'medium'
+vim.g.gruvbox_material_better_performance = 1
+vim.cmd('colorscheme gruvbox-material')
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" }) -- gitsigns column
 
 -- indentation
