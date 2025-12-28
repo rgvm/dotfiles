@@ -1,5 +1,7 @@
 brew 'cmake'
 brew 'ctags'
+brew 'llvm'
+brew 'lua-language-server'
 brew 'macvim', args: ['with-override-system-vim']
 brew 'neovim', args: ['HEAD']
 brew 'node'

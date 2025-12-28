@@ -28,6 +28,3 @@ mkdir -p ~/.config/nvim
 
 echo "Setting up symlinks..."
 source ./symlinks.sh
-
-# Install lang-specific extensions.
-nvim -c ":CocInstall coc-clangd"
