@@ -7,6 +7,7 @@ vim.pack.add({
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
     { src = 'https://github.com/nvim-telescope/telescope.nvim',  version = 'v0.2.0' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
     { src = 'https://github.com/stevearc/oil.nvim' },
     { src = 'https://github.com/tpope/vim-fugitive' },
     { src = 'https://github.com/tpope/vim-surround' },
