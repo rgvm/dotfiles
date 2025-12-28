@@ -141,6 +141,7 @@ end, { expr = true })
 
 -- lsp bindings
 vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 
 -- disable mouse
 vim.opt.mouse = ""
