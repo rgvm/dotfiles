@@ -5,4 +5,4 @@ ln -fs $SCRIPT_DIR/tmux/tmux.conf ~/.tmux.conf
 
 ln -fs $SCRIPT_DIR/nvim/init.lua ~/.config/nvim/init.lua
 
-ln -fs $SCRIPT_DIR/zsh/zsh_aliases ~/.zsh_aliases
+ln -fs $SCRIPT_DIR/zsh/zshrc ~/.zshrc
