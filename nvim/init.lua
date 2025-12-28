@@ -1,6 +1,5 @@
 -- plugins
 vim.pack.add({
-    { src = 'https://github.com/chriskempson/base16-vim' },
     { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
     { src = 'https://github.com/lewis6991/gitsigns.nvim' },
     { src = 'https://github.com/mbbill/undotree' },
