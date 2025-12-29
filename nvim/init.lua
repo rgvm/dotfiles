@@ -125,14 +125,17 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+-- save and quit
+vim.keymap.set("n", "<leader>w", "<Cmd>w<CR>")
+vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>")
+
 -- plugin bindings
 vim.keymap.set('n', '<leader>f', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>F', '<Cmd>Telescope live_grep<CR>')
-vim.keymap.set('n', '<leader>h', '<Cmd>Telescope live_grep<CR>')
+vim.keymap.set('n', '<leader>h', '<Cmd>Telescope help_tags<CR>')
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 vim.keymap.set('n', '<leader>o', vim.cmd.Oil)
-
 
 -- add j/k navigations to jumplist
 vim.keymap.set('n', 'j', function()
