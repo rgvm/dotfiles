@@ -1,16 +1,16 @@
 -- plugins
 vim.pack.add({
-    { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-    { src = 'https://github.com/mbbill/undotree' },
-    { src = 'https://github.com/neovim/nvim-lspconfig' },
-    { src = 'https://github.com/nvim-lua/plenary.nvim' },
-    { src = 'https://github.com/nvim-telescope/telescope.nvim',          version = 'v0.2.0' },
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
-    { src = 'https://github.com/sainnhe/gruvbox-material' },
-    { src = 'https://github.com/stevearc/oil.nvim' },
-    { src = 'https://github.com/tpope/vim-fugitive' },
-    { src = 'https://github.com/tpope/vim-surround' },
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/mbbill/undotree" },
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
+    { src = "https://github.com/nvim-telescope/telescope.nvim",          version = "v0.2.0" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+    { src = "https://github.com/sainnhe/gruvbox-material" },
+    { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/tpope/vim-fugitive" },
+    { src = "https://github.com/tpope/vim-surround" },
 })
 
 -- lsp config
@@ -23,10 +23,10 @@ vim.lsp.config("lua_ls", {
     }
 })
 vim.diagnostic.config({ virtual_text = true })
-vim.api.nvim_create_autocmd('LspAttach', {
+vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client:supports_method('textDocument/completion') then
+        if client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
         end
     end,
@@ -54,16 +54,16 @@ vim.opt.wrap = false
 
 -- color
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-vim.g.gruvbox_material_background = 'medium'
+vim.opt.background = "dark"
+vim.g.gruvbox_material_background = "medium"
 vim.g.gruvbox_material_better_performance = 1
-vim.cmd('colorscheme gruvbox-material')
+vim.cmd("colorscheme gruvbox-material")
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" }) -- gitsigns column
 
 -- indentation
 vim.opt.autoindent = true
 vim.opt.expandtab = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -84,14 +84,14 @@ vim.opt.splitright = true
 -- hybrid line numbering
 vim.opt.number = true
 vim.opt.relativenumber = true
-local numbertoggle = vim.api.nvim_create_augroup('numbertoggle', {})
-vim.api.nvim_create_autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'WinEnter' }, {
+local numbertoggle = vim.api.nvim_create_augroup("numbertoggle", {})
+vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
     group = numbertoggle,
     callback = function()
         vim.opt.relativenumber = true
     end,
 })
-vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave' }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
     group = numbertoggle,
     callback = function()
         vim.opt.relativenumber = false
@@ -99,21 +99,21 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'WinLeave'
 })
 
 -- set mapleader as space
-vim.keymap.set('n', '<Space>', '<Nop>')
-vim.g.mapleader = ' '
+vim.keymap.set("n", "<Space>", "<Nop>")
+vim.g.mapleader = " "
 
 -- jj as escape in insert mode
-vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set("i", "jj", "<Esc>")
 
 -- yank text to the OSX clipboard
-vim.keymap.set({ 'n', 'v', 'o' }, '<leader>y', '"*y')
-vim.keymap.set({ 'n', 'v', 'o' }, '<leader>Y', '"*Y')
+vim.keymap.set({ "n", "v", "o" }, "<leader>y", '"*y')
+vim.keymap.set({ "n", "v", "o" }, "<leader>Y", '"*Y')
 
 -- split navigation
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
+vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
+vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
+vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
+vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 
 -- visual mode line moving
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -130,44 +130,44 @@ vim.keymap.set("n", "<leader>w", "<Cmd>w<CR>")
 vim.keymap.set("n", "<leader>q", "<Cmd>q<CR>")
 
 -- plugin bindings
-vim.keymap.set('n', '<leader>f', '<Cmd>Telescope find_files<CR>')
-vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
-vim.keymap.set('n', '<leader>F', '<Cmd>Telescope live_grep<CR>')
-vim.keymap.set('n', '<leader>h', '<Cmd>Telescope help_tags<CR>')
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-vim.keymap.set('n', '-', vim.cmd.Oil)
+vim.keymap.set("n", "<leader>f", "<Cmd>Telescope find_files<CR>")
+vim.keymap.set("n", "<leader>b", "<Cmd>Telescope buffers<CR>")
+vim.keymap.set("n", "<leader>F", "<Cmd>Telescope live_grep<CR>")
+vim.keymap.set("n", "<leader>h", "<Cmd>Telescope help_tags<CR>")
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "-", vim.cmd.Oil)
 
 -- add j/k navigations to jumplist
-vim.keymap.set('n', 'j', function()
-    return vim.v.count > 1 and "m'" .. vim.v.count .. 'j' or 'j'
+vim.keymap.set("n", "j", function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
 end, { expr = true })
-vim.keymap.set('n', 'k', function()
-    return vim.v.count > 1 and "m'" .. vim.v.count .. 'k' or 'k'
+vim.keymap.set("n", "k", function()
+    return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
 end, { expr = true })
 
 -- lsp bindings
-vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.format)
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
-vim.keymap.set('n', "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "<leader><leader>", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
 -- custom statusline
 function Statusline()
-    return '%< %F %m' .. ReadOnly() .. '%=%y ' .. RHS()
+    return "%< %F %m" .. ReadOnly() .. "%=%y " .. RHS()
 end
 
 function ReadOnly()
     if vim.bo.readonly or not vim.bo.modifiable then
-        return ' ' .. '[]'
+        return " " .. "[]"
     else
-        return ''
+        return ""
     end
 end
 
 function RHS()
-    local curr_col = vim.fn.virtcol('.')
-    local num_cols = vim.fn.virtcol('$')
+    local curr_col = vim.fn.virtcol(".")
+    local num_cols = vim.fn.virtcol("$")
     local padding = math.max(0, 5 - #tostring(curr_col) - #tostring(num_cols))
-    return string.rep(' ', padding + 1) .. 'Ͼ:' .. curr_col .. '/' .. num_cols
+    return string.rep(" ", padding + 1) .. "Ͼ:" .. curr_col .. "/" .. num_cols
 end
 
 vim.opt.statusline = "%{%v:lua.Statusline()%}"
