@@ -134,6 +134,7 @@ vim.keymap.set("n", "<leader>f", "<Cmd>Telescope find_files<CR>")
 vim.keymap.set("n", "<leader>b", "<Cmd>Telescope buffers<CR>")
 vim.keymap.set("n", "<leader>F", "<Cmd>Telescope live_grep<CR>")
 vim.keymap.set("n", "<leader>h", "<Cmd>Telescope help_tags<CR>")
+vim.keymap.set("n", "<leader>m", "<Cmd>Telescope man_pages<CR>")
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 vim.keymap.set("n", "-", vim.cmd.Oil)
 
