@@ -4,7 +4,7 @@ vim.pack.add({
     { src = 'https://github.com/mbbill/undotree' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = 'https://github.com/nvim-lua/plenary.nvim' },
-    { src = 'https://github.com/nvim-telescope/telescope.nvim',  version = 'v0.2.0' },
+    { src = 'https://github.com/nvim-telescope/telescope.nvim',          version = 'v0.2.0' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter-context' },
     { src = 'https://github.com/sainnhe/gruvbox-material' },
@@ -142,6 +142,7 @@ end, { expr = true })
 -- lsp bindings
 vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+vim.keymap.set('n', "gd", vim.lsp.buf.definition)
 
 -- disable mouse
 vim.opt.mouse = ""
