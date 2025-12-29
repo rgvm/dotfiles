@@ -44,6 +44,7 @@ require("oil").setup()
 vim.opt.backup = false
 vim.opt.cursorline = true
 vim.opt.hlsearch = false
+vim.opt.mouse = ""
 vim.opt.scrolloff = 8
 vim.opt.swapfile = false
 vim.opt.undofile = true
@@ -124,13 +125,14 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- telescope bindings
-vim.keymap.set('n', '\\', '<Cmd>Telescope find_files<CR>')
+-- plugin bindings
+vim.keymap.set('n', '<leader>f', '<Cmd>Telescope find_files<CR>')
 vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
-vim.keymap.set('n', '<leader>/', '<Cmd>Telescope live_grep<CR>')
-
--- undo tree bindings
+vim.keymap.set('n', '<leader>F', '<Cmd>Telescope live_grep<CR>')
+vim.keymap.set('n', '<leader>h', '<Cmd>Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<leader>o', vim.cmd.Oil)
+
 
 -- add j/k navigations to jumplist
 vim.keymap.set('n', 'j', function()
@@ -144,9 +146,6 @@ end, { expr = true })
 vim.keymap.set('n', '<leader><leader>', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 vim.keymap.set('n', "gd", vim.lsp.buf.definition)
-
--- disable mouse
-vim.opt.mouse = ""
 
 -- custom statusline
 function Statusline()
