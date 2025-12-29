@@ -135,7 +135,7 @@ vim.keymap.set('n', '<leader>b', '<Cmd>Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>F', '<Cmd>Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>h', '<Cmd>Telescope help_tags<CR>')
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-vim.keymap.set('n', '<leader>o', vim.cmd.Oil)
+vim.keymap.set('n', '-', vim.cmd.Oil)
 
 -- add j/k navigations to jumplist
 vim.keymap.set('n', 'j', function()
