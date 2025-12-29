@@ -13,13 +13,6 @@ echo "Configuring iTerm2 preferences..."
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$SCRIPT_DIR/iterm"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
-echo "Installing Powerline fonts..."
-git clone https://github.com/powerline/fonts.git --depth=1
-cd fonts
-./install.sh
-cd ..
-rm -rf fonts
-
 echo "Installing Base16 Shell..."
 git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
