@@ -105,6 +105,12 @@ vim.g.mapleader = " "
 -- jj as escape in insert mode
 vim.keymap.set("i", "jj", "<Esc>")
 
+-- navigation in insert mode
+vim.keymap.set("i", "<C-h>", "<Left>")
+vim.keymap.set("i", "<C-j>", "<Down>")
+vim.keymap.set("i", "<C-k>", "<Up>")
+vim.keymap.set("i", "<C-l>", "<Right>")
+
 -- yank text to the OSX clipboard
 vim.keymap.set({ "n", "v", "o" }, "<leader>y", '"*y')
 vim.keymap.set({ "n", "v", "o" }, "<leader>Y", '"*Y')
