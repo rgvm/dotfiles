@@ -7,6 +7,7 @@ vim.pack.add({
     { src = "https://github.com/nvim-telescope/telescope.nvim",          version = "v0.2.0" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+    { src = "https://github.com/saghen/blink.cmp",                       version = "v1.8.0" },
     { src = "https://github.com/sainnhe/gruvbox-material" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/tpope/vim-fugitive" },
@@ -23,17 +24,23 @@ vim.lsp.config("lua_ls", {
     }
 })
 vim.diagnostic.config({ virtual_text = true })
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-        end
-    end,
-})
-vim.cmd("set completeopt+=noselect") -- don't autoselect first LSP suggestion
 
 vim.lsp.enable { "clangd", "lua_ls" }
+
+require("blink.cmp").setup({
+    keymap = { preset = "super-tab" },
+    completion = {
+        menu = {
+            auto_show = false,
+        },
+        documentation = { auto_show = true },
+        ghost_text = { enabled = true }
+    },
+    sources = {
+        default = { 'lsp', 'path', 'buffer' },
+    },
+    fuzzy = { implementation = "prefer_rust", prebuilt_binaries = { force_version = "v1.8.0" } },
+})
 
 require("nvim-treesitter").install { "c", "cpp", "lua" }
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
