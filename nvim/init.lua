@@ -22,10 +22,7 @@ vim.lsp.config("lua_ls", {
         }
     }
 })
-vim.diagnostic.config({
-    update_in_insert = true,
-    virtual_text = true,
-})
+vim.diagnostic.config({ virtual_text = true })
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
