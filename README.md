@@ -1,5 +1,5 @@
 # dotfiles
-My dotfiles for an OSX dev environment. I know yours are probably better don't judge me pls.
+My dotfiles for an OSX dev environment.
 ## Fresh Install
 ### Xcode
 Install Xcode from the App Store and get the Xcode command line tools with:
