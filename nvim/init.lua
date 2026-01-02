@@ -34,16 +34,22 @@ require("blink.cmp").setup({
             auto_show = false,
         },
         documentation = { auto_show = true },
-        ghost_text = { enabled = true }
     },
     sources = {
         default = { 'lsp', 'path', 'buffer' },
     },
+    cmdline = { enabled = false },
     fuzzy = { implementation = "prefer_rust", prebuilt_binaries = { force_version = "v1.8.0" } },
 })
 
 require("nvim-treesitter").install { "c", "cpp", "lua" }
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+require("telescope").setup({
+    pickers = {
+        buffers = { initial_mode = "normal" },
+    },
+})
 
 require("oil").setup()
 
