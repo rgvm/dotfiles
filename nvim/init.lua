@@ -89,7 +89,8 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.tabstop = 2
     end,
 })
-vim.opt.cinoptions = "N-s" -- no indentation inside cpp namespaces
+-- removes indentation for namespaces and switch case clauses
+vim.opt.cinoptions = "N-s,:0"
 
 -- split settings
 vim.opt.splitbelow = true
