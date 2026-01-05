@@ -1,5 +1,4 @@
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
 export DEFAULT_USER=raghav
 export EDITOR="nvim"
 
@@ -89,12 +88,3 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
-
-eval "$(pyenv init -)"
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        source "$BASE16_SHELL/profile_helper.sh"
-base16_gruvbox-dark-medium
