@@ -33,6 +33,9 @@ require("blink.cmp").setup({
         menu = {
             auto_show = false,
         },
+        ghost_text = {
+            enabled = true,
+        },
         documentation = { auto_show = true },
     },
     sources = {
@@ -51,7 +54,13 @@ require("telescope").setup({
     },
 })
 
-require("oil").setup()
+require("oil").setup({
+    skip_confirm_for_simple_edits = true,
+    lsp_file_methods = {
+        enabled = false,
+    },
+    watch_for_changes = true,
+})
 
 -- basic settings
 vim.opt.backup = false
