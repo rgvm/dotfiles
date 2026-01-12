@@ -1,6 +1,7 @@
 brew 'cmake'
 brew 'ctags'
 brew 'font-mononoki-nerd-font'
+brew 'gopls'
 brew 'llvm'
 brew 'lua-language-server'
 brew 'macvim', args: ['with-override-system-vim']

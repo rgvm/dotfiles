@@ -25,7 +25,7 @@ vim.lsp.config("lua_ls", {
 })
 vim.diagnostic.config({ virtual_text = true })
 
-vim.lsp.enable { "clangd", "lua_ls" }
+vim.lsp.enable { "clangd", "gopls", "lua_ls" }
 
 require("blink.cmp").setup({
     keymap = { preset = "super-tab" },
@@ -42,7 +42,7 @@ require("blink.cmp").setup({
     fuzzy = { implementation = "prefer_rust", prebuilt_binaries = { force_version = "v1.8.0" } },
 })
 
-require("nvim-treesitter").install { "c", "cpp", "lua" }
+require("nvim-treesitter").install { "c", "cpp", "lua", "go" }
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 require("telescope").setup({
